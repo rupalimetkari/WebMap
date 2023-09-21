@@ -17,15 +17,12 @@ namespace WebMap.Service
         public List<LocationModel> FetchLocationsFromCsv(string path)
         {
             List<LocationModel> locations = new List<LocationModel>();
-
             using (var stream = new StreamReader(HttpContext.Current.Server.MapPath(path)))
             using (var reader = new StringReader(CleanCsv(stream)))
             using (var csv = new CsvReader(reader, new CsvConfiguration(CultureInfo.InvariantCulture)
             {
                 Delimiter = ";",
-                Quote = '"',
                 HasHeaderRecord = false,
-                MissingFieldFound = null,
                 BadDataFound = context => {
                 }
 
@@ -37,7 +34,6 @@ namespace WebMap.Service
                 {
                     if (!string.IsNullOrEmpty(location.LongitudeValue))
                     {
-                        // Trim the quotes (if any) and try to parse the string to a double
                         string longitudeStr = location.LongitudeValue.Trim('"');
                         if (double.TryParse(longitudeStr, out double longitudeVal))
                         {
@@ -45,7 +41,7 @@ namespace WebMap.Service
                         }
                         else
                         {
-                            // Handle error: could not convert to double
+
                         }
                     }
 
@@ -59,9 +55,6 @@ namespace WebMap.Service
                         }
                     }
                 }
-
-                var x = locations;
-             
             }
             return locations;
         }
