@@ -22,33 +22,32 @@ namespace WebMap.Service
             using (var csv = new CsvReader(reader, new CsvConfiguration(CultureInfo.InvariantCulture)
             {
                 Delimiter = ";",
+                Quote = '"',
                 HasHeaderRecord = false,
-                BadDataFound = context => {
-                }
+                BadDataFound = null,
+                MissingFieldFound = null,
 
             }))
             {
-                csv.Context.RegisterClassMap<LocationModelMap>();
+
                 locations = csv.GetRecords<LocationModel>().ToList();
-                foreach (var location in locations)
+                foreach(var location in locations)
                 {
-                    if (!string.IsNullOrEmpty(location.LongitudeValue))
-                    {
-                        string longitudeStr = location.LongitudeValue.Trim('"');
-                        if (double.TryParse(longitudeStr, out double longitudeVal))
-                        {
-                            location.Longitude = longitudeVal;
-                        }
-                    }
-                    if (!string.IsNullOrEmpty(location.Station_ID_and_Site_Name))
-                    {
-                        var parts = location.Station_ID_and_Site_Name.Split(new[] { ';' }, 2);
-                        if (parts.Length == 2)
-                        {
-                            location.Station_ID = parts[0].Trim('"');
-                            location.Site_Name = parts[1].Trim('"');
-                        }
-                    }
+                    var row = location.Station_ID_and_Site_Name;
+                    string[] parts = row.Split(';');
+                    location.Station_ID = parts[0];
+                    location.Site_Name = parts[1];
+                    location.Gas_Brand = parts[2];
+                    location.Address = parts[3];
+                    location.City = parts[4];
+                    location.State = parts[5];
+                    location.Zip = parts[6];
+                    location.County_Name = parts[7];
+                    location.Pricing_Zone   = parts[8];
+                    location.Cluster_Median_Price = double.TryParse(parts[9], out double tempValMedian) ? tempValMedian : (double?)null;
+                    location.Cluster_Market_Price = double.TryParse(parts[10], out double tempValMarket) ? tempValMarket : (double?)null;
+                    location.Latitude = double.TryParse(parts[11], out double tempValLat) ? tempValLat : (double?)null;
+                    location.Longitude = double.TryParse(parts[12], out double tempValLong) ? tempValLong : (double?)null;
                 }
             }
             return locations;
@@ -61,33 +60,11 @@ namespace WebMap.Service
             string line;
             while ((line = reader.ReadLine()) != null)
             {
-                line = line.Replace(";\"\"", ";\"");
-                line = line.Replace("\"\";", "\";");
-                line = line.Replace(";;", ";\"\";");
                 cleanedCsv.AppendLine(line);
             }
             return cleanedCsv.ToString();
         }
-
     }
 
-    public sealed class LocationModelMap : ClassMap<LocationModel>
-    {
-        public LocationModelMap()
-        {
-            Map(m => m.Station_ID_and_Site_Name).Index(0);
-            Map(m => m.Gas_Brand).Index(1);
-            Map(m => m.Address).Index(2);
-            Map(m => m.City).Index(3);
-            Map(m => m.State).Index(4);
-            Map(m => m.Zip).Index(5);
-            Map(m => m.County_Name).Index(6);
-            Map(m => m.Pricing_Zone).Index(7);
-            Map(m => m.Cluster_Median_Price).Index(8);
-            Map(m => m.Cluster_Market_Price).Index(9);
-            Map(m => m.Latitude).Index(10);
-            Map(m => m.LongitudeValue).Index(11);
-        }
-    }
 
 }
