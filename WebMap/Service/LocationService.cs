@@ -22,7 +22,6 @@ namespace WebMap.Service
             using (var csv = new CsvReader(reader, new CsvConfiguration(CultureInfo.InvariantCulture)
             {
                 Delimiter = ";",
-                Quote = '"',
                 HasHeaderRecord = false,
                 BadDataFound = null,
                 MissingFieldFound = null,
@@ -32,7 +31,7 @@ namespace WebMap.Service
                 locations = csv.GetRecords<LocationModel>().ToList();
                 foreach(var location in locations)
                 {
-                    var row = location.Station_ID_and_Site_Name;
+                    var row = location.TOTALROW;
                     string[] parts = row.Split(';');
                     location.Station_ID = parts[0];
                     location.Site_Name = parts[1].Trim('"');
@@ -52,6 +51,7 @@ namespace WebMap.Service
             return locations;
         }
 
+        //Remove header
         private string CleanCsv(TextReader reader)
         {
             StringBuilder cleanedCsv = new StringBuilder();

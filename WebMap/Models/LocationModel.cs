@@ -8,8 +8,8 @@ namespace WebMap.Models
 {
     public class LocationModel
     {
-        [Name("STATION_ID;SITE_NAME\"")]
-        public string Station_ID_and_Site_Name { get; set; }
+        [Name("TOTALROW")]
+        public string TOTALROW { get; set; }
 
 
         [Name("STATION_ID")]
