@@ -11,6 +11,7 @@ using WebMap.Models;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Configuration;
 
 namespace WebMap.Controllers.View
 {
@@ -21,9 +22,10 @@ namespace WebMap.Controllers.View
         public async Task<ActionResult> Index()
         {
             ViewBag.Title = "Home Page";
+            string csvPath = ConfigurationManager.AppSettings["CsvFilePath"];
 
             var baseUrl = Request.Url.GetLeftPart(UriPartial.Authority);
-            var apiUrl = $"{baseUrl}/api/getlocations?path={Uri.EscapeDataString("~/Data/modifieddata.csv")}";
+            var apiUrl = $"{baseUrl}/api/getlocations?path={Uri.EscapeDataString(csvPath)}";
 
             List<LocationModel> locations = await FetchLocationsFromApi(apiUrl);
 
