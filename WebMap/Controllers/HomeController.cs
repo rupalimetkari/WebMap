@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebMap.Models;
 
 namespace WebMap.Controllers
 {
@@ -15,7 +16,6 @@ namespace WebMap.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
-
 
             List<Location> locations = new List<Location>();
 
@@ -31,12 +31,4 @@ namespace WebMap.Controllers
     }
 
 
-    public class Location
-    {
-        [Name("LATITUDE")]
-        public double? Latitude { get; set; }
-
-        [Name("LONGITUDE")]
-        public double? Longitude { get; set; }
-    }
 }
