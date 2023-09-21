@@ -1,0 +1,10 @@
+﻿#map {
+    height: 400px;
+    width: 100%;
+}
+
+.data-table {
+    max-height: calc(20px * 30);
+
+    overflow-y: scroll;
+}

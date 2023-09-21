@@ -23,11 +23,11 @@ namespace WebMap
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
-            bundles.Add(new Bundle("~/bundles/mapcss").Include(
-                      "~/Content/map.css"
+            bundles.Add(new Bundle("~/bundles/indexcss").Include(
+                      "~/Content/index.css"
                 ));
-            bundles.Add(new Bundle("~/bundles/mapjs").Include(
-                      "~/Scripts/map.js"
+            bundles.Add(new Bundle("~/bundles/indexjs").Include(
+                      "~/Scripts/index.js"
                 ));
         }
     }

@@ -36,7 +36,7 @@ namespace WebMap.Models
         public string Pricing_Zone { get; set;}
 
         [Name("CLUSTER_MEDIAN_PRICE")]
-        public double? Cluster_Media_Price { get; set; }
+        public double? Cluster_Median_Price { get; set; }
 
         [Name("CLIENT_MARKET_PRICE")]
         public double? Cluster_Market_Price { get; set; }

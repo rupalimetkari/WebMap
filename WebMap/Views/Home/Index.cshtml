@@ -3,18 +3,42 @@
 <div id="map"></div>
 
 
-@Styles.Render("~/bundles/mapcss")
-
+@Styles.Render("~/bundles/indexcss")
 
 @section scripts {
-    <script>
-        var locationsData = @Html.Raw(Json.Encode(Model));
-    </script>
-
+    <script>var locationsData = @Html.Raw(Json.Encode(Model));</script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGrMcAIVaLJcLwI3cB9sVPx4vD7cgTC0s&callback=initMap" async defer></script>
 }
+@Scripts.Render("~/bundles/indexjs")
 
+<br />
 
-@Scripts.Render("~/bundles/mapjs")
-
-
+<div class="data-table">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Station ID</th>
+                <th>Site Name</th>
+                <th>State</th>
+                <th>City</th>
+                <th>Address</th>
+                <th>Cluster Median Price</th>
+                <th>Cluster Market Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var location in Model)
+            {
+                <tr>
+                    <td>@location.Station_ID</td>
+                    <td>@location.Site_Name</td>
+                    <td>@location.State</td>
+                    <td>@location.City</td>
+                    <td>@location.Address</td>
+                    <td>@location.Cluster_Median_Price</td>
+                    <td>@location.Cluster_Market_Price</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
