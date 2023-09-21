@@ -19,4 +19,8 @@ Data Visualization: Google Maps JavaScript API
 <br />
 Architecture: MVC with Web API
 
+## Screenshot
+![image](https://github.com/rupalimetkari/WebMap/assets/45219307/c08092b6-3b9c-460f-bf7d-c42e34cf3bc4)
+<br />
+![image](https://github.com/rupalimetkari/WebMap/assets/45219307/0b63925b-9796-4782-9840-165d5826b693)
 
