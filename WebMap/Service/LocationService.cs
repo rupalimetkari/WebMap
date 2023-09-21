@@ -39,12 +39,7 @@ namespace WebMap.Service
                         {
                             location.Longitude = longitudeVal;
                         }
-                        else
-                        {
-
-                        }
                     }
-
                     if (!string.IsNullOrEmpty(location.Station_ID_and_Site_Name))
                     {
                         var parts = location.Station_ID_and_Site_Name.Split(new[] { ';' }, 2);
