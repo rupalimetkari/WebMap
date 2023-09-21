@@ -9,10 +9,13 @@ namespace WebMap.Models
     public class LocationModel
     {
         [Name("STATION_ID")]
-        public int Station_ID { get; set; }
+        public string Station_ID { get; set; }
 
         [Name("SITENAME")]
         public string Site_Name { get; set; }
+
+        [Name("STATION_ID;SITE_NAME\"")]
+        public string Station_ID_and_Site_Name { get; set; }
 
         [Name("ZDALY_GAS_BRAND")]
         public string Gas_Brand { get; set;}
@@ -27,7 +30,7 @@ namespace WebMap.Models
         public string State { get; set;}
 
         [Name("ZIP")]
-        public int Zip { get; set;}
+        public int? Zip { get; set;}
 
         [Name("COUNTY_NAME")]
         public string County_Name { get; set;}
@@ -44,7 +47,10 @@ namespace WebMap.Models
         [Name("LATITUDE")]
         public double? Latitude { get; set; }
 
-        [Name("LONGITUDE")]
+        
         public double? Longitude { get; set; }
+
+        [Name("LONGITUDE")]
+        public string LongitudeValue { get; set; }
     }
 }
