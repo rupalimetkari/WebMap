@@ -8,8 +8,14 @@
 
 @section scripts {
     <script>var locationsData = @Html.Raw(Json.Encode(Model));</script>
-    @*<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGrMcAIVaLJcLwI3cB9sVPx4vD7cgTC0s&callback=initMap" async defer></script>*@
-    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGrMcAIVaLJcLwI3cB9sVPx4vD7cgTC0s&callback=initMap" async defer></script>
+    <script type="text/javascript">
+            var clusterMedianPrices = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.Select(m => m.Cluster_Median_Price)));
+            var clientMarketPrices = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.Select(m => m.Cluster_Market_Price)));
+            var siteNames = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.Select(m => m.Site_Name)));
+    </script>
+    
+    <script src="https://code.highcharts.com/stock/highstock.js"></script>
     <script src="https://code.highcharts.com/modules/series-label.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
@@ -20,7 +26,7 @@
 
 <br />
 
-@*<div class="data-table">
+<div class="data-table">
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
@@ -48,13 +54,13 @@
                 }
             </tbody>
         </table>
-    </div>*@
+    </div>
 
 <br />
 
 
-    <figure class="highcharts-figure">
-        <div id="highchartcontainer"></div>
-    </figure>
+<figure class="highcharts-figure">
+    <div id="highchartcontainer"></div>
+</figure>
 
 
