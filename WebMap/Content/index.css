@@ -5,6 +5,5 @@
 
 .data-table {
     max-height: calc(20px * 30);
-
     overflow-y: scroll;
 }

@@ -6,7 +6,7 @@ using System.Web;
 
 namespace WebMap.Models
 {
-    public class Location
+    public class LocationModel
     {
         [Name("STATION_ID")]
         public int Station_ID { get; set; }
