@@ -26,9 +26,17 @@ namespace WebMap
             bundles.Add(new Bundle("~/bundles/indexcss").Include(
                       "~/Content/index.css"
                 ));
-            bundles.Add(new Bundle("~/bundles/indexjs").Include(
-                      "~/Scripts/index.js"
+            bundles.Add(new Bundle("~/bundles/mapjs").Include(
+                      "~/Scripts/map.js"
                 ));
+            bundles.Add(new Bundle("~/bundles/chartcss").Include(
+                "~/Content/chart.css"
+          ));
+            bundles.Add(new Bundle("~/bundles/chartjs").Include(
+                 "~/Scripts/chart.js"
+           ));
+
+
         }
     }
 }

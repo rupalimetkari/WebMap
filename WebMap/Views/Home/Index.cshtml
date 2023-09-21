@@ -4,41 +4,57 @@
 
 
 @Styles.Render("~/bundles/indexcss")
+@Styles.Render("~/bundles/chartcss")
 
 @section scripts {
     <script>var locationsData = @Html.Raw(Json.Encode(Model));</script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGrMcAIVaLJcLwI3cB9sVPx4vD7cgTC0s&callback=initMap" async defer></script>
+    @*<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGrMcAIVaLJcLwI3cB9sVPx4vD7cgTC0s&callback=initMap" async defer></script>*@
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 }
-@Scripts.Render("~/bundles/indexjs")
+@Scripts.Render("~/bundles/mapjs")
+@Scripts.Render("~/bundles/chartjs")
 
 <br />
 
-<div class="data-table">
-    <table class="table table-bordered table-striped">
-        <thead>
-            <tr>
-                <th>Station ID</th>
-                <th>Site Name</th>
-                <th>State</th>
-                <th>City</th>
-                <th>Address</th>
-                <th>Cluster Median Price</th>
-                <th>Cluster Market Price</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var location in Model)
-            {
+@*<div class="data-table">
+        <table class="table table-bordered table-striped">
+            <thead>
                 <tr>
-                    <td>@location.Station_ID</td>
-                    <td>@location.Site_Name</td>
-                    <td>@location.State</td>
-                    <td>@location.City</td>
-                    <td>@location.Address</td>
-                    <td>@location.Cluster_Median_Price</td>
-                    <td>@location.Cluster_Market_Price</td>
+                    <th>Station ID</th>
+                    <th>Site Name</th>
+                    <th>State</th>
+                    <th>City</th>
+                    <th>Address</th>
+                    <th>Cluster Median Price</th>
+                    <th>Cluster Market Price</th>
                 </tr>
-            }
-        </tbody>
-    </table>
-</div>
+            </thead>
+            <tbody>
+                @foreach (var location in Model)
+                {
+                    <tr>
+                        <td>@location.Station_ID</td>
+                        <td>@location.Site_Name</td>
+                        <td>@location.State</td>
+                        <td>@location.City</td>
+                        <td>@location.Address</td>
+                        <td>@location.Cluster_Median_Price</td>
+                        <td>@location.Cluster_Market_Price</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>*@
+
+<br />
+
+
+    <figure class="highcharts-figure">
+        <div id="highchartcontainer"></div>
+    </figure>
+
+
