@@ -7,19 +7,14 @@
 @Styles.Render("~/bundles/chartcss")
 
 @section scripts {
-    <script>var locationsData = @Html.Raw(Json.Encode(Model));</script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGrMcAIVaLJcLwI3cB9sVPx4vD7cgTC0s&callback=initMap" async defer></script>
     <script type="text/javascript">
-            var clusterMedianPrices = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.Select(m => m.Cluster_Median_Price)));
-            var clientMarketPrices = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.Select(m => m.Cluster_Market_Price)));
-            var siteNames = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.Select(m => m.Site_Name)));
+        var locationsData = @Html.Raw(Json.Encode(Model));
+        var clusterMedianPrices = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.Select(m => m.Cluster_Median_Price)));
+        var clientMarketPrices = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.Select(m => m.Cluster_Market_Price)));
+        var siteNames = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.Select(m => m.Site_Name)));
     </script>
-    
-    <script src="https://code.highcharts.com/stock/highstock.js"></script>
-    <script src="https://code.highcharts.com/modules/series-label.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/modules/export-data.js"></script>
-    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGrMcAIVaLJcLwI3cB9sVPx4vD7cgTC0s&callback=initMap" async defer></script>
+
 }
 @Scripts.Render("~/bundles/mapjs")
 @Scripts.Render("~/bundles/chartjs")
@@ -27,34 +22,34 @@
 <br />
 
 <div class="data-table">
-        <table class="table table-bordered table-striped">
-            <thead>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Station ID</th>
+                <th>Site Name</th>
+                <th>State</th>
+                <th>City</th>
+                <th>Address</th>
+                <th>Cluster Median Price</th>
+                <th>Cluster Market Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var location in Model)
+            {
                 <tr>
-                    <th>Station ID</th>
-                    <th>Site Name</th>
-                    <th>State</th>
-                    <th>City</th>
-                    <th>Address</th>
-                    <th>Cluster Median Price</th>
-                    <th>Cluster Market Price</th>
+                    <td>@location.Station_ID</td>
+                    <td>@location.Site_Name</td>
+                    <td>@location.State</td>
+                    <td>@location.City</td>
+                    <td>@location.Address</td>
+                    <td>@location.Cluster_Median_Price</td>
+                    <td>@location.Cluster_Market_Price</td>
                 </tr>
-            </thead>
-            <tbody>
-                @foreach (var location in Model)
-                {
-                    <tr>
-                        <td>@location.Station_ID</td>
-                        <td>@location.Site_Name</td>
-                        <td>@location.State</td>
-                        <td>@location.City</td>
-                        <td>@location.Address</td>
-                        <td>@location.Cluster_Median_Price</td>
-                        <td>@location.Cluster_Market_Price</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
+            }
+        </tbody>
+    </table>
+</div>
 
 <br />
 

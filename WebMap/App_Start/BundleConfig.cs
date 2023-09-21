@@ -30,11 +30,16 @@ namespace WebMap
                       "~/Scripts/map.js"
                 ));
             bundles.Add(new Bundle("~/bundles/chartcss").Include(
-                "~/Content/chart.css"
-          ));
+                        "~/Content/chart.css"
+                ));
             bundles.Add(new Bundle("~/bundles/chartjs").Include(
-                 "~/Scripts/chart.js"
-           ));
+                        "~/Scripts/highstock.js",
+                        "~/Scripts/series-label.js",
+                        "~/Scripts/exporting.js",
+                        "~/Scripts/export-data.js",
+                        "~/Scripts/accessibility.js",
+                        "~/Scripts/chart.js"
+                 ));
 
 
         }
