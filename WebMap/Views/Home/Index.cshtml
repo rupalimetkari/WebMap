@@ -2,40 +2,19 @@
 
 <div id="map"></div>
 
+
+@Styles.Render("~/bundles/mapcss")
+
+
 @section scripts {
     <script>
-        var map;
-        function initMap() {
-            var center = { lat: @Model[0].Latitude, lng: @Model[0].Longitude }; // Assuming the first location as center
-
-            var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 4,
-                center: center,
-            });
-          @foreach (var location in Model)
-            {
-                if(location.Latitude != null && location.Longitude != null)
-                {
-                <text>
-                    var marker = new google.maps.Marker({
-                        position: { lat: @location.Latitude, lng: @location.Longitude },
-                        map: map,
-                        title: '@location.Site_Name'
-                    });
-                </text>
-                }
-            }
-        }
+        var locationsData = @Html.Raw(Json.Encode(Model));
     </script>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGrMcAIVaLJcLwI3cB9sVPx4vD7cgTC0s&callback=initMap" async defer></script>
 }
 
-@section styles {
-    <style>
-        #map {
-            height: 400px;
-            width: 100%;
-        }
-    </style>
-}
+
+@Scripts.Render("~/bundles/mapjs")
+
+
