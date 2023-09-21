@@ -29,21 +29,20 @@ namespace WebMap.Service
 
             }))
             {
-
                 locations = csv.GetRecords<LocationModel>().ToList();
                 foreach(var location in locations)
                 {
                     var row = location.Station_ID_and_Site_Name;
                     string[] parts = row.Split(';');
                     location.Station_ID = parts[0];
-                    location.Site_Name = parts[1];
+                    location.Site_Name = parts[1].Trim('"');
                     location.Gas_Brand = parts[2];
                     location.Address = parts[3];
                     location.City = parts[4];
                     location.State = parts[5];
-                    location.Zip = parts[6];
+                    location.Zip = parts[6].Trim('"');
                     location.County_Name = parts[7];
-                    location.Pricing_Zone   = parts[8];
+                    location.Pricing_Zone   = parts[8].Trim('"');
                     location.Cluster_Median_Price = double.TryParse(parts[9], out double tempValMedian) ? tempValMedian : (double?)null;
                     location.Cluster_Market_Price = double.TryParse(parts[10], out double tempValMarket) ? tempValMarket : (double?)null;
                     location.Latitude = double.TryParse(parts[11], out double tempValLat) ? tempValLat : (double?)null;
