@@ -5,13 +5,18 @@ This project is built using the MVC and Web API architectural patterns. It aims 
 
 ## Features
 Google Maps Integration: Display various gas stations on the map with markers.
+<br />
 Data Table: List details of each station including STATION_ID, SITE_NAME, STATE, CITY, ADDRESS, CLUSTER_MEDIAN_PRICE, and CLIENT_MARKET_PRICE.
+<br />
 Charts: Display two types of charts(Cluster median price and cluster market price) that provide visual insights into the data.
 
 ## Technologies
 Backend: C#, .NET
+<br />
 Frontend: HTML, CSS, JavaScript
+<br />
 Data Visualization: Google Maps JavaScript API
+<br />
 Architecture: MVC with Web API
 
 
