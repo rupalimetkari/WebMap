@@ -1,14 +1,4 @@
-﻿using CsvHelper;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web;
-using System.Web.Http;
-using WebMap.Models;
+﻿using System.Web.Http;
 using WebMap.Service;
 
 namespace WebMap.Controllers.Api
@@ -20,7 +10,7 @@ namespace WebMap.Controllers.Api
         public IHttpActionResult GetLocations(string path)
         {
             LocationService service = new LocationService();
-            var locations = service.GetLocationsFromCsv(path);
+            var locations = service.FetchLocationsFromCsv(path);
             return Ok(locations);
         }
 

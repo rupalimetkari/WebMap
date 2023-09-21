@@ -41,7 +41,12 @@ namespace WebMap
                         "~/Scripts/chart.js"
                  ));
 
-
+            bundles.Add(new Bundle("~/bundles/DataTablescss").Include(
+                     "~/Content/dataTables.min.css"
+               ));
+            bundles.Add(new Bundle("~/bundles/DataTablesjs").Include(
+                      "~/Scripts/dataTables.min.js"
+                ));
         }
     }
 }

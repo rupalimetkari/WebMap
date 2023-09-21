@@ -1,5 +1,4 @@
 ﻿using CsvHelper;
-using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -11,7 +10,7 @@ namespace WebMap.Service
 {
     public class LocationService
     {
-        public List<LocationModel> GetLocationsFromCsv(string path)
+        public List<LocationModel> FetchLocationsFromCsv(string path)
         {
             List<LocationModel> locations = new List<LocationModel>();
 
