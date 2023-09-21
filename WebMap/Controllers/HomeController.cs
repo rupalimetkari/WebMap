@@ -23,10 +23,9 @@ namespace WebMap.Controllers
             using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
             {
                 locations = csv.GetRecords<Location>().ToList();
-                var x = 5;
             }
 
-            return View();
+            return View(locations);
         }
     }
 
